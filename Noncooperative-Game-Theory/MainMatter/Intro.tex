@@ -1,0 +1,41 @@
+\chapter{Introduction}
+In decision theory, we're modeled as acting as if we were maximizing our utility given some exogenous parameters. 
+An example is that producers in competitive markets choose the output that maximizes their profit. In this setting, no individual producer's behavior affects market structure, and expectations about other producers do not influence decision-making.
+
+However, such perspectives of analysis is overly restriction and the real world is not always the case. For example, collusion requires 
+participants to act based on the expectation of other firms' behavior. This is what game theory studies. Game theory is a subject 
+that deals with interaction among decision-makers, focusing on the existence and properties of equilibrium. Equilibirium is a kind of stability, where 
+no participants have incentive to deviate. We'll formalize this concept later on.
+
+Now we start to consider the formal definition of games. We try to formalize these concepts by analyzing the game of rock-scissors-pape.
+\begin{example}[Rock-scissors-pape]
+    In this game, we have 2 players and the consequences can be represented in \tabref{tab:Rock-scissors-pape}, where $1$ stands for win, $0$ stands for draw and $-1$ stands for lose. This is also called the payoff matrix, which is widely used in game theory. The embedding assumption of this game is that players prefer winning to losing, inducing a preference relation.
+
+\begin{table}[tbh]
+\centering
+\begin{tabular}{ccccc}
+                          &                        & \multicolumn{3}{c}{Player 2}                                                         \\
+                          &                        & R                          & S                          & P                          \\ \cline{3-5} 
+\multirow{3}{*}{Player 1} & \multicolumn{1}{c|}{R} & \multicolumn{1}{c|}{0, 0}  & \multicolumn{1}{c|}{1, -1} & \multicolumn{1}{c|}{-1, 1} \\ \cline{3-5} 
+                          & \multicolumn{1}{c|}{S} & \multicolumn{1}{c|}{-1, 1} & \multicolumn{1}{c|}{0, 0}  & \multicolumn{1}{c|}{1, -1} \\ \cline{3-5} 
+                          & \multicolumn{1}{c|}{P} & \multicolumn{1}{c|}{-1, 1} & \multicolumn{1}{c|}{1, -1} & \multicolumn{1}{c|}{0, 0}  \\ \cline{3-5} 
+\end{tabular}
+\caption{Outcome of the Rock-scissors-pape Game}
+\label{tab:Rock-scissors-pape}
+\end{table}
+\end{example}
+
+A game consists of players (along with their preferences) and rules (that maps actions to consequences). Each player $i$, denoted by $A_i$, has a set of available actions, called action set $\mathcal{A}_i$. 
+We use $a_i$ to denote a certain action, i.e., $a_i\in \mathcal{A}_i$. As for "rule", it maps the action profile $a = (a_i)_{i\in N}$ to a consequence $c$, i.e., a mapping $g$ from de Cartesian product of action sets $\mathcal{A} = \prod_{i\in N} \mathcal{A}_i$ to the consequence set $\mathcal{C}$.
+If we assume the participants are rational, they can surely compare among 2 consequences, inducing a preference $\preceq^*_i$ of player $i$ over $\mathcal{C} \times \mathcal{C}$.
+
+\begin{definition}[Game]
+    A game is a 4-tuple $\langle N,\mathcal{A}, g, \{\preceq_i^*\}_{i\in N}  \rangle $, where $N$ is the set of player index. If $\preceq_i^*$ admit a utility representation, 
+    we may also write $\langle N,\mathcal{A}, g, \{u_i\}_{i\in N}  \rangle $ instead.
+\end{definition}
+
+Notice that the consequence and the action is associated with a mapping, we can equivalently define the preference relation over $\mathcal{A}\times \mathcal{A}$. Let $a_{-i}$ denote the action of other players, i.e., $a_{-i} = (a_j)_{j\in N \setminus \{i\}}$, then
+the preference of player $i$ can be defined as $$(a^{(1)}_i,a^{(1)}_{-i}) \preceq_i (a^{(2)}_i,a^{(2)}_{-i}) :\iff g(a^{(1)}_i,a^{(1)}_{-i}) \preceq_i^* g(a^{(2)}_i,a^{(2)}_{-i}).$$
+\,Then a game can be represented by $\langle N,\mathcal{A}, \{\preceq_i\}_{i\in N}  \rangle$.
+
+
