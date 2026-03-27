@@ -1,0 +1,63 @@
+\documentclass{myBook}
+
+\title{Noncooperative Game Theory : Rationality in Interaction}
+\author{Zhenran Guo}
+\date{\today}
+
+
+\begin{document}
+
+% Front matter section.
+\frontmatter
+
+% Include the title page, which is located in the FrontMatter subfolder.
+\input{./FrontMatter/titlepage}
+
+% Create the book's title page.
+\maketitle\pagebreak
+
+% Include the preface page from the FrontMatter subfolder.
+\input{./FrontMatter/preface}
+
+% Include the acknowledgement page from the FrontMatter subfolder.
+\input{./FrontMatter/acknowledgement}
+
+% Table of contents page.
+\tableofcontents
+
+% Main matter section.
+\mainmatter
+
+\input{./MainMatter/Intro}
+
+% Part 1: Static Games with Perfect Information.
+\part{Static Games with Perfect Information}
+
+
+% Part 2: Static Games with Perfect Information.
+\part{Dynamic Games with Perfect Information}
+
+
+% Part 3: Static Games with Perfect Information.
+\part{Static Games with Incomplete Information}
+
+
+% Part 4: Static Games with Perfect Information.
+\part{Dynamic Games with Incomplete Information}
+
+
+% Appendices section.
+\appendix
+
+% Include the "notation" appendix from the BackMatter subfolder.
+\include{./BackMatter/notation}
+
+% Include the "code" appendix from the BackMatter subfolder.
+\include{./BackMatter/code}
+
+
+% Include the "references" appendix from the BackMatter subfolder.
+\include{./BackMatter/references}
+
+% End the document.
+\end{document}
