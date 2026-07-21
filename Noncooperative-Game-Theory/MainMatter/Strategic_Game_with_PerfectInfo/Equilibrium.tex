@@ -1,0 +1,43 @@
+\section{Equilibrium}
+In this section, we make clear step one of decision choice, i.e., given your oponents' choice, how you should behave. 
+
+\subsection{Pure Strategy Nash Equilibrium}
+\subsubsection{Definition}
+Since we assume players only care about their own payoff, this is equivalent to solving:
+$$\max_{a_i \in \mathcal{A}_i} u_i (a_i,a_{-i}), \text{ where $a_{-i} \in \prod_{j\neq i} \mathcal{A}_j$ is a given parameter}.$$ 
+\,We denote its solution correspondence $BR_i(a_{-i})$, called the best-respose correspondence.
+
+We refer to the steady state where every subject is playing a best-response equilibrium. It's important to notice that in the context of strategic game, players may play multiple rounds of game, but the rounds are independent, meaning there's no strategic link between rounds. 
+\begin{definition}[Pure Strategy Nash Equilibrium(PSNE)]
+    Denote $BR(a) := \prod_{i\in I} BR_i(a_{-i})$. We say $a^*$ is a PSNE if $a^* \in BR(a^*)$. Or equivalently, $a^*$ is a PSNE if
+    $$\forall i \in N : (a_i,a^*_{-i})\preceq (a^*_i,a^*_{-i}), \forall a_i\in\mathcal{A}_i.$$
+\end{definition}
+
+This leads to an important way of finding the equilibrium:
+\begin{itemize}
+    \item STEP I: find the best-response correspondence of each player.
+    \item STEP II: find the action profile satisfying $a^*_i\in BR_i (a_{-i}^*)$.
+\end{itemize}
+
+\subsubsection{Examples}
+BoS; Coordination Game; PD; H-D; Pennis(strictly competitive game)
+
+\subsubsection{Existence}
+As we've already seen, not every strategic game has a PSNE. In this subsubsection, we provide some conditions that guarentee the existence. By the definition of
+PSNE, it's natural to use the correspondence version of fixed point theorem. Here we use Kakutani's fixed point theorem, which says that as long as the correspondence is nonempty, closed and convex, there exists a fixed point.
+
+To suffice this condition, we assume the followings:
+\begin{itemize}
+    \item Action sets are nonempty compact convex subset of $\R^n$;
+    \item The preference relation is continuous and quasi-concave on $\mathcal{A}_i$.
+\end{itemize}
+\,Then by Kakutani's fixed point theorem, there exists PSNE.
+
+\begin{theorem}
+    For a strategic game $\langle N,\mathcal{A}, \{\preceq_i\}_{i\in N}  \rangle$, suppose for all $i\in N$, $\mathcal{A}_i$ is nonempty, compact and convex. Further, we suppose $\preceq_i$ is continuous and quasi-concave on $\mathcal{A}_i$, then there exists PSNE.
+\end{theorem}
+
+\section{Mixed Strategy Equilibrium}
+For many games, sticking with one strategy is somehow stupid. It's like keep playing scissor in the rock-scissor-pape game, which is clearly unwise. So, players may deliberatly randomize the strategy played.
+
+Other motivating example concerning the introduction includes the matching pennis, which is similar to the rock-scissor-pape game, and the relationship between auditors and taxpayers, see \citealp[(p. 37)]{Osborne1994-kg}.
