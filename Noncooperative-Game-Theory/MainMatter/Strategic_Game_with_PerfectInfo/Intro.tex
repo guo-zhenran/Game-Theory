@@ -1,8 +1,15 @@
-A strategic game is a scenario where players make decisions independently and simultaneously. For perfect information, consider an experimental setting, every subject, anonymously sitting behind a computer, is shown a payoff matrix and asked to choose their strategy.
-They won't be able to see the outcome until everyone makes their choice. To make a correct decision, they should care not only about their own choice, but also make decisions under other subjects' possible action, i.e., form a belief. 
-To be more specific, we need to consider two things: how should one interact given opponents' action? And, what are opponents' possible actions?
-We will formalize this idea soon after we give the definition of a strategic game.
+Before getting into the definitions, we make clear what our goal is in strategic games as a player. As we assume players are rational, i.e., payoff seekers, we are solving a maximum problem. 
+Given different game settings or solution concepts, there's slight difference in notation or technique. But, generally speaking, a player in a game should form a reasonable belief and make optimal decisions under such a belief.
 
-\begin{definition}[Strategic Game]
-    A strategic game is a 3-tuple $\langle N,\mathcal{A}, \{\preceq_i\}_{i\in N}  \rangle$. Everything is deined in the introduction part of the book. If every $\mathcal{A}_i$ is finite, we say the game is finite.
-\end{definition}
+In general, we consider that a player $i$ with the belief $(\mathcal{A}_{-i},\pi_i)$, where $\pi_i$ is a probability measure on $\mathcal{A}_{-i}$, is trying to maximize his/her payoff by choosing a strategy $\sigma_i\in \Delta(\mathcal{A}_i)$, i.e., 
+\begin{equation}\label{equ: strategic_gameUMP}
+    \max_{\sigma_i\in \Delta(\mathcal{A}_i)} \sum_{a_i\in \mathcal{A}_i}\sum_{a_{-i} \in \mathcal{A}_{-i}}\sigma_i (a_i) \pi_i (a_{-i})u_{i}(a_i,a_{-i}),
+\end{equation}
+\,and denote its solution the best response correspondence
+\begin{equation}\label{equ: strategic_gameBR}
+    BR_i(\pi_i) := \arg \max_{\sigma_i\in \Delta(\mathcal{A}_i)} \sum_{a_i\in \mathcal{A}_i}\sum_{a_{-i} \in \mathcal{A}_{-i}}\sigma_i (a_i) \pi_i (a_{-i})u_{i}(a_i,a_{-i}).
+\end{equation}
+As long as the belief is reasonable, a game is trivial as player can do their best by playing a strategy in the best-response correspondence. Thus, we'll first formalize the reasoning process and then turn to solve such a UMP.
+
+For the complete information case, we'll first introduce several settings where belief is determined in different ways, and under such belief, how should players react.
+In the following section, we introduce the concept of rationalizability, which concerns what belief is reasonable.

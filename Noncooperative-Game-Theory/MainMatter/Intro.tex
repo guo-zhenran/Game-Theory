@@ -8,6 +8,7 @@ that deals with interaction among decision-makers, focusing on the existence and
 no participants have incentive to deviate. We'll formalize this concept later on.
 
 \section{Game}
+\subsection{Basic Composition of a Game}
 Now we start to consider the formal definition of games. We try to formalize these concepts by analyzing the game of rock-scissors-pape.
 \begin{example}[Rock-scissors-pape]
     In this game, we have 2 players and the consequences can be represented in \tabref{tab:Rock-scissors-pape}, where $1$ stands for win, $0$ stands for draw and $-1$ stands for lose. This is also called the payoff matrix, which is widely used in game theory. The embedding assumption of this game is that players prefer winning to losing, inducing a preference relation.
@@ -39,6 +40,38 @@ Notice that the consequence and the action is associated with a mapping, we can 
 the preference of player $i$ can be defined as $$(a^{(1)}_i,a^{(1)}_{-i}) \preceq_i (a^{(2)}_i,a^{(2)}_{-i}) :\iff g(a^{(1)}_i,a^{(1)}_{-i}) \preceq_i^* g(a^{(2)}_i,a^{(2)}_{-i}).$$
 \,Then a game can be represented by $\langle N,\mathcal{A}, \{\preceq_i\}_{i\in N}  \rangle$.
 
-Such a game is of the simplist form. In this book, more structure such as information will be added in the following chapters.
-\section{Common Example of Games}
+Such a game is of the simplist form since it's almost one-shot and static. We'll introduce history when it comes to the extensive form.
 
+\subsection{Strategic Form}
+A strategic game is a scenario where players make decisions independently and simultaneously. 
+
+To understand the meaning of ``independently and simultaneously'', let's consider an experimental setting, every subject, anonymously sitting behind a computer, is shown a payoff matrix and asked to choose their strategy\footnote{Note that this is the perfect information case. We'll talk about the impact of information in \ref{sec: info}.}.
+They won't be able to see the outcome until everyone makes their choice. Two important things to understand:
+\begin{itemize}
+    \item They don't necessarily to make decisions at exactly the same time.
+    \item It's not necessarily a one-shot game. It can be repeated, but across rounds, no strategic links are allowed. 
+\end{itemize}
+
+To make a correct decision, they should care not only about their own choice, but also make decisions under other subjects' possible action, i.e., form a belief. 
+To be more specific, we need to consider two things: how should one interact given opponents' action? And, what are opponents' possible actions?
+We will formalize this idea soon after we give the definition of a strategic game.
+
+\begin{definition}[Strategic Game]
+    A strategic game is a 3-tuple $\langle N,\mathcal{A}, \{\preceq_i\}_{i\in N}  \rangle$. Everything is deined in the introduction part of the book. If every $\mathcal{A}_i$ is finite, we say the game is finite.
+\end{definition}
+
+\subsection{Extensive Form}
+
+\subsection{Common Example of Games}
+
+\section{Belief, Information and Knowledge}
+\subsection{State and Belief}
+
+\subsection{From State to Information}
+
+\subsection{Knowledge and Common Knowledge}
+
+\subsection{Perfect and Incomplete Information}
+\label{sec: info}
+
+\section{Decision Under Uncertainty}

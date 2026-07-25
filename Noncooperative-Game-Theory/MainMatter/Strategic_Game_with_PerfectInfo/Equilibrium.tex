@@ -1,13 +1,32 @@
 \section{Equilibrium}
-In this section, we make clear step one of decision choice, i.e., given your oponents' choice, how you should behave. 
+In this section, we make clear, given a reasonable belief, how you should behave. 
 
 \subsection{Pure Strategy Nash Equilibrium}
 \subsubsection{Definition}
-Since we assume players only care about their own payoff, this is equivalent to solving:
-$$\max_{a_i \in \mathcal{A}_i} u_i (a_i,a_{-i}), \text{ where $a_{-i} \in \prod_{j\neq i} \mathcal{A}_j$ is a given parameter}.$$ 
-\,We denote its solution correspondence $BR_i(a_{-i})$, called the best-respose correspondence.
+There're games that people may stick to one single strategies, see the following payoff matrix.
+\begin{table}[h!]
+\centering
+\begin{tabular}{cccc}
+                          &                        & \multicolumn{2}{c}{Player 2}                          \\
+                          &                        & A                         & B                         \\ \cline{3-4} 
+\multirow{2}{*}{Player 1} & \multicolumn{1}{c|}{A} & \multicolumn{1}{c|}{2, 2} & \multicolumn{1}{c|}{0, 0} \\ \cline{3-4} 
+                          & \multicolumn{1}{c|}{B} & \multicolumn{1}{c|}{0, 0} & \multicolumn{1}{c|}{0, 0} \\ \cline{3-4} 
+\end{tabular}
+\caption{A Coordination Game}
+\label{tab:A Coordination Game}
+\end{table}
+\,No matter it's player 1 or 2, he/she should only choose action A as that's the only strategy that gives them a positive payoff. We refer to this simplification of strategy a pure strategy.
+\begin{definition}[Pure Strategy]
+    A pure strategy is a strategy that assigns probability one to a single action.
+\end{definition}
 
-We refer to the steady state where every subject is playing a best-response equilibrium. It's important to notice that in the context of strategic game, players may play multiple rounds of game, but the rounds are independent, meaning there's no strategic link between rounds. 
+We assume that every player is palying a pure strategy, then we can simplify \eqref{equ: strategic_gameUMP} and \eqref{equ: strategic_gameBR} as 
+$$\begin{aligned}
+    &\max_{a_i\in \mathcal{A}_i} u_i(a_i,a_{-i})\\
+    BR_i(a_{-i})&= \arg\max_{a_i\in \mathcal{A}_i} u_i(a_i,a_{-i}).
+\end{aligned}$$
+
+We refer to the steady state where every subject is playing a best-response equilibrium. 
 \begin{definition}[Pure Strategy Nash Equilibrium(PSNE)]
     Denote $BR(a) := \prod_{i\in I} BR_i(a_{-i})$. We say $a^*$ is a PSNE if $a^* \in BR(a^*)$. Or equivalently, $a^*$ is a PSNE if
     $$\forall i \in N : (a_i,a^*_{-i})\preceq (a^*_i,a^*_{-i}), \forall a_i\in\mathcal{A}_i.$$
@@ -37,7 +56,14 @@ To suffice this condition, we assume the followings:
     For a strategic game $\langle N,\mathcal{A}, \{\preceq_i\}_{i\in N}  \rangle$, suppose for all $i\in N$, $\mathcal{A}_i$ is nonempty, compact and convex. Further, we suppose $\preceq_i$ is continuous and quasi-concave on $\mathcal{A}_i$, then there exists PSNE.
 \end{theorem}
 
-\section{Mixed Strategy Equilibrium}
+\subsection{Mixed Strategy Equilibrium}
 For many games, sticking with one strategy is somehow stupid. It's like keep playing scissor in the rock-scissor-pape game, which is clearly unwise. So, players may deliberatly randomize the strategy played.
 
-Other motivating example concerning the introduction includes the matching pennis, which is similar to the rock-scissor-pape game, and the relationship between auditors and taxpayers, see \citealp[(p. 37)]{Osborne1994-kg}.
+Other motivating example concerning the introduction of mixed strategy includes the matching pennis, which is similar to the rock-scissor-pape game, and the relationship between auditors and taxpayers, see \citet[p. 37]{Osborne1994-kg}.
+
+The idea above is to give the strategies a probability measure, which introduce the randomness of the strategies being played.
+\begin{definition}[Mixed Strategy]
+    Let $\Delta \mathcal{A}_i$ denote the set of probability distribution on $\mathcal{A}_i$. Then $\alpha_i \in \Delta \mathcal{A}_i$ is a mixed strategy.
+\end{definition}
+
+Next, we formalize the payoff. Here we use von Neumann-Morgenstern's theory on uncertainty
