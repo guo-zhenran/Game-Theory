@@ -1,3 +1,10 @@
 \section{Rationalizability}
 The idea of rationalizability is that, take a player's view, not only I'm rational, my opponents are also rational. That is to say, any strategy that is not in the best-response correspondence won't be taken. 
 Thus, I should assign probability zero to such strategies in my belief. Also, this is at least mutual knowledge, i.e., everyone in the game knows that every other player's strategy is a best-response.
+
+To formalize the about motivation, we consider a strategic game $\mathcal{G}=\langle N, \mathcal{A}, \{\preceq_i\}_i\in N\rangle $. The initial belief of player $i$ is $\pi^0_i\in \Delta(\mathcal{A}_{-i})$ and he/she should expect other players to play strategies in
+$$\mathcal{B}_i^0:=\left\{\sigma_{-i}:= \prod_{j\neq i}\sigma_{j}; \sigma_j\in BR_j (\pi^0_{j})\right\}.$$
+\,Then, player $i$ will update his/her belief such that the support is a subset of $\mathcal{B}_i^0$. At the same time, every player did the same thing and we can reduce the game as $\mathcal{G}^1=\langle N, \mathcal{B}^1, \{\preceq^1_i\}_{i\in N}\rangle$, where $\mathcal{B}^1:=\prod_{i\in N}BR_i(\pi_i^0)$ and 
+$\preceq^1_i$ restricts $\preceq_i$ on $\mathcal{B}^1$.
+
+We further assume that players have unlimited reasoning depth.
