@@ -1,0 +1,127 @@
+\section{Definition and Solution Concepts}
+\subsection{Definition}
+The main difference between strategic game and extensive game is that strategic games ignore the sequence of play. We'll use hitory and player function to depict the sequential play and the corresponding strategies.
+In this part, we focus on extensive game with perfect information. It's perfect information in the sense that the history realized is common knowledge.
+
+\subsubsection{History and Sequence of Play}
+History records, in the game, the action chosen by players sequentially.
+\begin{definition}[History]
+    Let $H$ be a set of sequences whose component is an action, we say $H$ is a set of history if 
+    \begin{enumerate}
+        \item $\emptyset\in H$, i.e., initial history is recorded;
+        \item $(a_1,\cdots,a_K)\in H \implies \forall k\leq K: (a_1,\cdots, a_k) \in H$;
+        \item $\{a_k\}_{k=1}^{\infty}\in H \implies \forall i\in \N: (a_1,\cdots, a_i) \in H$.
+    \end{enumerate}
+\end{definition}
+
+We define the following:
+\begin{description}
+    \item[Length] $l(h)$ is the length of history $h$, i.e., the length of sequence $h$.
+    \item[Terminal] Suppose $h_0=(a_1,\cdots,a_K)\in H$, if there doesn't exist $h=(a_1,\cdots,a_{K+1})$ such that $h\in H$, then we say $h_0$ is a terminal. Let $H^T$ denote the set of terminal history.
+    \item[Player Function] This helps us to identify who is going to play. Suppose we have history $h_1=(a_1,\cdots,a_K)$ and $h_2=(a_1,\cdots,a_{K+1})$, then $P(h_1)$ is the player who takes action after $h_1$, i.e., $a_{K+1} \in \mathcal{A}_{P(h_1)}$.
+    \item[Outcome] Outcome can be represented by a function $O: H^T\to \R^N$, which is the payoff every player can get.
+\end{description}
+
+\begin{definition}[Extensive Game with Perfect Information]
+    $\mathcal{G}=\langle N,H,P,\{\preceq_i\}_{i\in N} \rangle$ is an extensive game with perfect information where
+    \begin{itemize}
+        \item $N$ is the set of players;
+        \item $H$ is the set of history;
+        \item $P$ is the player function defined on $H^N:=H\setminus H^T$;
+        \item $\preceq_i$ is defiend on the set of outcomes $\mathcal{O}:=O(H^T)$.
+    \end{itemize}
+    \,Every realized history is common knowledge to players. If $\max_{h\in H} l(h)<\infty$, then we say the game has finite horizon.
+\end{definition}
+
+\subsubsection{Strategies}
+\begin{definition}[Strategy]
+    Define $A(h):= \{a\in \mathcal{A}_{P(h)}: (h,a) \in H\}$, where $h\in H^N$. Player $i$'s stratgy in an extensive game with perfect information is a function $\sigma_i: H^N \cap \{h\in H: P(h)=i\} \to \mathcal{A}_{P(h)}, h \mapsto a\in A(h)$. 
+\end{definition}
+
+\begin{example}[Strategies in \figref{fig:extensive}]
+    By definition:
+    \begin{description}
+        \item[Player set] $N=\{Parent, Child\}$;
+        \item[Terminal History] $H^T=\{\{G\},\{B,F\},\{B,P,G\},\{B,P,B\}\}$
+        \item[Outcome] 
+    \end{description}
+    Define the function $\Sigma: H^N\to H$ such that $$\Sigma=\begin{cases}
+        \sigma_{Child}, \text{ if } P(h)=Child\\
+        \sigma_{Parent}, \text{ if } P(h)=Parent
+    \end{cases},$$
+    \,where $\sigma_{Child}(h)=h\times \{Good, Bad\}$ and $\sigma_{Parent}(h)=h\times \{Forgive, Punish\}$.
+\end{example}
+
+\subsubsection{Strategic Form and Reduced Form of an Extensive Game}
+
+\begin{figure}[h]
+    \centering
+    % 左侧：博弈树（子图）
+    \begin{subfigure}[b]{0.55\textwidth}   % 宽度稍小，留出间距
+        \centering
+        \begin{istgame}[->,shorten >=1.3pt]
+            \setistmathTF*001
+            \xtdistance{15mm}{30mm}
+            \istroot(0)[initial node]{Child}
+            \istb{Good}[above, sloped]{(0,2)}
+            \istb{Bad}[above, sloped]
+            \endist
+            \istroot(1)(0-2)<30>{Parent}
+            \istb{Forgive}[above, sloped]{(1,1)}
+            \istb{Punish}[above, sloped]
+            \endist
+            \istroot(2)(1-2)<30>{Children}
+            \istb{Good}[above, sloped]{(1,1)}
+            \istb{Bad}[above, sloped]{(-2,-1)}
+            \endist
+        \end{istgame}
+        \caption{Extensive Form}
+        \label{fig:extensive}
+    \end{subfigure}
+    \hfill
+    % 右侧：minipage 容器，里面放两个子表格
+    \begin{minipage}[b]{0.4\textwidth}
+        \centering
+        % 第一个表格
+        \begin{subtable}{\linewidth}
+            \centering
+            \begin{tabular}{ccc}
+                                    & P                           & F                         \\ \cline{2-3} 
+            \multicolumn{1}{c|}{BB} & \multicolumn{1}{c|}{-2, -1} & \multicolumn{1}{c|}{1, 1} \\ \cline{2-3} 
+            \multicolumn{1}{c|}{BG} & \multicolumn{1}{c|}{1, 1}   & \multicolumn{1}{c|}{1, 1} \\ \cline{2-3} 
+            \multicolumn{1}{c|}{GG} & \multicolumn{1}{c|}{0, 2}   & \multicolumn{1}{c|}{0, 2} \\ \cline{2-3} 
+            \multicolumn{1}{c|}{GB} & \multicolumn{1}{c|}{0, 2}   & \multicolumn{1}{c|}{0, 2} \\ \cline{2-3} 
+            \end{tabular}
+            \caption{Strategic Form}
+            \label{tab:strategic}
+        \end{subtable}
+
+        \vspace{1.5\baselineskip}   % 两个表格之间的垂直间距
+
+        % 第二个表格
+        \begin{subtable}{\linewidth}
+            \centering
+            \begin{tabular}{ccc}
+                                    & P                           & F                         \\ \cline{2-3} 
+            \multicolumn{1}{c|}{BB} & \multicolumn{1}{c|}{-2, -1} & \multicolumn{1}{c|}{1, 1} \\ \cline{2-3} 
+            \multicolumn{1}{c|}{BG} & \multicolumn{1}{c|}{1, 1}   & \multicolumn{1}{c|}{1, 1} \\ \cline{2-3} 
+            \multicolumn{1}{c|}{G}  & \multicolumn{1}{c|}{0, 2}   & \multicolumn{1}{c|}{0, 2} \\ \cline{2-3} 
+            \end{tabular}
+            \caption{Reduced Form}
+            \label{tab:reduced}
+        \end{subtable}
+    \end{minipage}
+    \par\vspace{1\baselineskip}  % 与上方表格拉开一点距离
+    {\footnotesize\raggedright % 小号字，左对齐
+    \textit{Note:} B = Bad, G = Good, P = Punish, F = Forgive.}
+    \caption{Example for extensive form, strategic form and reduced form. }
+    % \label{fig:combined}
+\end{figure}
+
+\subsection{Solution Concepts}
+\subsubsection{Nash Equilibrium}
+This simply treats an extensive game as a strategic game in which the strategies are intepreted as the choice made in a one-shot sense.
+\begin{definition}[Nash Equilibrium(NE)]
+    
+\end{definition}
+

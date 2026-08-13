@@ -1,10 +1,70 @@
-\section{Rationalizability}
+\subsection{Rationalizability}
+\subsubsection{Rationality and Strictly Dominated Actions}
+We now begin to understand the very first reasoning pattern. As a rational player, i.e., a payoff seeker, we should only play strategies in best response because it helps you obtain the highest payoff given a specific belief. We say such strategies are rational.
+\begin{definition}[A rational strategy]
+    We say a strategy $\sigma_i\in \Delta(\mathcal{A}_i)$ is rational if $\exists \pi_i\in\Delta(\mathcal{A}_{-i}): \sigma_i\in BR_i(\pi_i).$
+\end{definition}
+
+Well, will our opponents choose their strategies in the same way? It's reasonable to assume that they are rational. Thus we assign positive probability only to strategies that can be supported by a certain belief. For actions can not be supported by any belief, we call them strictly dominated actions and they'll not appear in a mixed strategy.
+\begin{definition}[Strictly Dominated action]
+    We say $a_i\in \mathcal{A}_i$ is strictly dominated if $\forall \pi_i\in \Delta(\mathcal{A}_{-i}): a_i\notin BR_i(\pi_i)$.
+\end{definition}
+
+We'll see in the next theorem that a strictly dominated action will not be chosen as a pure strategy since there always exists a mixed strategy that yields a higher expected payoff..
+
+\begin{theorem}[Pearce]
+    $a_i$ is strictly dominated $\iff$ there exists a mixed strategy $\sigma_i \in \Delta(\mathcal{A}_i)$ such that $$\forall a_{-i} \in \mathcal{A}_{-i}:U_i(\sigma_i, a_{-i})> u_i(a_i,a_{-i}).$$
+    \,Then we say $\sigma_i$ strictly dominates $a_i$.
+\end{theorem}
+
+Let $NB_i$ be the set of all strictly dominated actions for player $i$. Then we can reduce the original game as $\mathcal{G}^1:=\langle N, \prod_{i\in N} (\mathcal{A}_i\setminus NB_i), \{\preceq_i^1\}_{i\in N}\rangle $, where $\preceq_i^1$ is a restrcition of $\preceq_i$ on $\mathcal{A}_i\setminus NB_i$.
+
+\subsubsection{Hierarchies of Beliefs and Common Knowledge}
+
 The idea of rationalizability is that, take a player's view, not only I'm rational, my opponents are also rational. That is to say, any strategy that is not in the best-response correspondence won't be taken. 
 Thus, I should assign probability zero to such strategies in my belief. Also, this is at least mutual knowledge, i.e., everyone in the game knows that every other player's strategy is a best-response.
 
-To formalize the about motivation, we consider a strategic game $\mathcal{G}=\langle N, \mathcal{A}, \{\preceq_i\}_i\in N\rangle $. The initial belief of player $i$ is $\pi^0_i\in \Delta(\mathcal{A}_{-i})$ and he/she should expect other players to play strategies in
-$$\mathcal{B}_i^0:=\left\{\sigma_{-i}:= \prod_{j\neq i}\sigma_{j}; \sigma_j\in BR_j (\pi^0_{j})\right\}.$$
-\,Then, player $i$ will update his/her belief such that the support is a subset of $\mathcal{B}_i^0$. At the same time, every player did the same thing and we can reduce the game as $\mathcal{G}^1=\langle N, \mathcal{B}^1, \{\preceq^1_i\}_{i\in N}\rangle$, where $\mathcal{B}^1:=\prod_{i\in N}BR_i(\pi_i^0)$ and 
-$\preceq^1_i$ restricts $\preceq_i$ on $\mathcal{B}^1$.
+The abovee intuition actually mentions 2 kinds of beliefs. One is the belief of a player on his/her own strategies, i.e., positive probability will only be assigned to best-response strategies. The other is the belief on other players' rationality, i.e., whether they assign probability zero to non-best strategies.
 
-We further assume that players have unlimited reasoning depth.
+
+\subsubsection{Iterated Elimination of Strictly Dominated Actions}
+The section above shows how a single player eliminates strictly dominated actions, now we extend it to the game level and assume that players have unlimited reasoning.
+
+By the above motivation, we first eliminate the never-best response by reducing the game into $\mathcal{G}^1=\langle N, \mathcal{S}^1, \{\preceq^1_i\}_{i\in N}\rangle $, where 
+\begin{equation} \label{equ: level_1}
+    \mathcal{S}^1=\prod_{i\in N}\{a_i\in \mathcal{A}_i: \exists \pi_i \in \Delta(\mathcal{A}_{-i}) \text{ s.t. } a_i\in BR_i(\pi_i)\},
+\end{equation}
+\,and $\preceq^1_i$ is obtained by restricting $\preceq_i$ in $\mathcal{S}^1$. \eqref{equ: level_1} says that players won't take actions in never-best response into account, even as a composition of a mixed strategy, thus player should form a reasonable belief that assigns probability zero to other players' never-best response. Denote the set of reasonable belief for player $i$ as $\mathcal{B}_i^1:=\{\pi \in \Delta(\mathcal{A}_{-i}):supp(\pi) \subset \mathcal{S}^1_{-i}\}$.
+
+Now we define iteratively, suppose we have defined $\mathcal{G}^1, \cdots, \mathcal{G}^k$ and the set of reasonable belife is denoted by $\mathcal{B}_i^k$. For each $k\ge 1$, let $\mathcal{S}^k_i$ be the projection of $\mathcal{S}^k$ onto player $i$'s action set, and define the restricted best-response correspondence as
+\[
+BR_i^k(\pi_i) := \arg\max_{\sigma_i \in \Delta(\mathcal{S}^k_i)} \sum_{a_i\in\mathcal{A}_i}\sum_{a_{-i}\in\mathcal{A}_{-i}} \sigma_i(a_i)\pi_i(a_{-i})u_i(a_i,a_{-i}).
+\]
+Thus, define 
+$$
+\mathcal{S}^{k+1} :=\prod_{i\in N} \{a_i\in \mathcal{A}_i: \exists \pi_i \in \mathcal{B}_i^k \text{ s.t. } a_i\in BR_i^k(\pi_i)\}.
+$$  
+\,The player $i$ will update his/her belief as $\mathcal{B}_i^{k+1}=\{\pi \in \Delta(\mathcal{A}_{-i}):supp(\pi) \subset \mathcal{S}^{k+1}_{-i}\}.$ Finally, by intersecting all $\mathcal{S}^k$, we obtain a set that survives the iterated elimination of strictly dominated actions with belief updates, denoted $\mathcal{S}:= \bigcap_{k=1}^{\infty}\mathcal{S}^k$.
+
+\subsubsection{Rationalizability}
+Before giving the formal definition of rationalizability, we provide a result concerning properties of $\mathcal{S}^k$ and $\mathcal{S}$.
+
+\begin{proposition}
+    Suppose $\mathcal{S}^k$ is generated as above, then 
+    \begin{enumerate}
+        \item $\{\mathcal{S}^k\}$ decreases monotonically;
+        \item $\exists K\in \N : \mathcal{S}^K=\mathcal{S}^{K+1} =\cdots = \mathcal{S}$;
+        \item $\mathcal{S}\neq \emptyset$;
+        \item $\mathcal{S}$ has the best-response property, i.e, 
+        \begin{equation} \label{equ: rationalizability}
+            \mathcal{S}=\prod_{i\in N} \{a_i\in \mathcal{A}_i: \exists \pi_i \in \Delta(\mathcal{S}_{-i}) \text{ s.t. } a_i\in BR_i(\pi_i)\}.
+        \end{equation}
+    \end{enumerate}
+\end{proposition}
+
+We follow \eqref{equ: rationalizability} to formalize the definition of rationalizability.
+\begin{definition}[Rationalizability]
+    For a strategic game $\mathcal{G}$, we say $a_i\in\mathcal{A}_i$ is rationalizable if there exists $\{S_i\}_{i\in N}$ such that $a_i\in S_i$ and for any $j\in N$, $$\forall a_j\in S_j: \exists \pi_j \in \Delta(S_{-j}) \text{ s.t. } a_j\in BR_j(\pi_j).$$
+\end{definition}
+
+\subsubsection{Rationalizability and Equilibrium}

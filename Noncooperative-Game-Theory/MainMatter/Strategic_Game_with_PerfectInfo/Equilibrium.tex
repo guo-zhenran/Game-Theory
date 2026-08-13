@@ -1,8 +1,8 @@
-\section{Equilibrium}
+\subsection{Equilibrium}
 In this section, we make clear, given a reasonable belief, how you should behave. 
 
-\subsection{Pure Strategy Nash Equilibrium}
-\subsubsection{Definition}
+\subsubsection{Pure Strategy Nash Equilibrium}
+\paragraph{Definition}
 There're games that people may stick to one single strategies, see the following payoff matrix.
 \begin{table}[h!]
 \centering
@@ -38,10 +38,10 @@ This leads to an important way of finding the equilibrium:
     \item STEP II: find the action profile satisfying $a^*_i\in BR_i (a_{-i}^*)$.
 \end{itemize}
 
-\subsubsection{Examples}
+\paragraph{Examples}
 BoS; Coordination Game; PD; H-D; Pennis(strictly competitive game)
 
-\subsubsection{Existence}
+\paragraph{Existence}
 As we've already seen, not every strategic game has a PSNE. In this subsubsection, we provide some conditions that guarentee the existence. By the definition of
 PSNE, it's natural to use the correspondence version of fixed point theorem. Here we use Kakutani's fixed point theorem, which says that as long as the correspondence is nonempty, closed and convex, there exists a fixed point.
 
@@ -56,7 +56,7 @@ To suffice this condition, we assume the followings:
     For a strategic game $\langle N,\mathcal{A}, \{\preceq_i\}_{i\in N}  \rangle$, suppose for all $i\in N$, $\mathcal{A}_i$ is nonempty, compact and convex. Further, we suppose $\preceq_i$ is continuous and quasi-concave on $\mathcal{A}_i$, then there exists PSNE.
 \end{theorem}
 
-\subsection{Mixed Strategy Equilibrium}
+\subsubsection{Mixed Strategy Equilibrium}
 For many games, sticking with one strategy is somehow stupid. It's like keep playing scissor in the rock-scissor-pape game, which is clearly unwise. So, players may deliberatly randomize the strategy played.
 
 Other motivating example concerning the introduction of mixed strategy includes the matching pennis, which is similar to the rock-scissor-pape game, and the relationship between auditors and taxpayers, see \citet[p. 37]{Osborne1994-kg}.
@@ -66,4 +66,5 @@ The idea above is to give the strategies a probability measure, which introduce 
     Let $\Delta \mathcal{A}_i$ denote the set of probability distribution on $\mathcal{A}_i$. Then $\alpha_i \in \Delta \mathcal{A}_i$ is a mixed strategy.
 \end{definition}
 
-Next, we formalize the payoff. Here we use von Neumann-Morgenstern's theory on uncertainty
+
+\subsubsection{Correlated Equilibrium}

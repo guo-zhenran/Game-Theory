@@ -1,63 +1,53 @@
-\documentclass{myBook}
+\documentclass{myNotes}
 
-\title{Noncooperative Game Theory : Rationality in Interaction}
-\author{Zhenran Guo}
+\title{Noncooperative Game Theory: the Epistemic Approach}
+\author{Zhenran Guo\thanks{See \href{https://guo-zhenran.github.io/notes/}{my homepage} for updates. I deliberately use "his/her" repeatedly when referring to pronouns, even though this may distract the reader (and myself), for fear of the choice of language raising issues of gender inequality or discrimination. 
+In addition, I use "we" throughout the text to show (and as reminder for me) that that these notes are a shared intellectual journey between the author and the reader.}}
 \date{\today}
 
-
+\addbibresource{references.bib}
 \begin{document}
+\maketitle
+\myPreface{
+    This is my note on noncooperative game theory. After reading the core of classical game theory textbooks, e.g., \textcite{gibbons1992game} and \textcite{Osborne1994-kg}, I find that organizing the theory merely according to solution concepts—like various refinements of Nash Equilibrium—feels LESS natural, as these texts place limited emphasis on explicitly modeling the players' reasoning patterns.
+    I treat game theory as a general model for understanding how players form reasonable beliefs in different settings of interaction and act rationally in the sense that they choose strategies consistent with their beliefs. Suppose the reasoning pattern is clear, i.e., how players form and update their belief is modeled; then the corresponding solution concept can be defined naturally. Indeed, for almost all important solution concepts, one can find a supporting reasoning pattern, and I believe that understanding this underlying reasoning helps clarify each concept's assumptions and limitations.
 
-% Front matter section.
-\frontmatter
+    Initially, I have a vague idea of rearranging the materials in classical game theory textbooks by defining the best-response on beliefs when I first thought about a unified framework of game theory. I discussed my idea with AI and surprisingly found out that epistemic game theory is exactly what I want.
+    My understanding of game theory resembles that described in the introductory part of \textcite{Brandenburger2014-bl} and \textcite{Perea2012-ge}. Besides, I also refer to (copy) classical game theory textbooks (\textcite{Fudenberg1991-qp}, \textcite{Osborne1994-kg}, \textcite{Myerson1997-qf}, \textcite{Gibbons1992-yr} and \textcite{gibbons1992game}) on definitions, results and proofs. 
+    }
+\clearpage
+\myAbstract{
+    This notes on game theory take an epistemic approach, by which we mean that players are modeled to i) form a reasonable belief and ii) maximize his/her payoff according to the belief. There are multiple reasoning patterns and we follow these patterns to define solution concepts. 
+    Instead of treating the epistemic foundation formally, we use the epistemic definitions as intuition and motivation to unfold the classical game theory. This notes have 4 main parts concerning different game theoretic settings, in which we first discuss the setting and then move on to different reasoning patterns and the corresponding solution concepts as well as the refinements. To be specific, each part concerns:
+    \begin{enumerate}
+        \item Strategic Game: We first discuss the complete information case and then move on to Bayesian games.
+        \item Extensive Game with Perfect Information
+        \item Extensive Game with Incomplete Information
+        \item Topics: This part includes some applications of game theory, such as auction, signaling, bargining...
+    \end{enumerate}
+}
 
-% Include the title page, which is located in the FrontMatter subfolder.
-\input{./FrontMatter/titlepage}
 
-% Create the book's title page.
-\maketitle\pagebreak
-
-% Include the preface page from the FrontMatter subfolder.
-\input{./FrontMatter/preface}
-
-% Include the acknowledgement page from the FrontMatter subfolder.
-\input{./FrontMatter/acknowledgement}
-
-% Table of contents page.
 \tableofcontents
+\newpage
 
-% Main matter section.
-\mainmatter
 
+\part{Introduction}
 \input{./MainMatter/Intro}
 
-% Part 1: Static Games with Perfect Information.
-\part{Strategic Games}
+\part{Strategic Game}
 \input{MainMatter/Strategic_Game_with_PerfectInfo/Intro.tex}
-\chapter{With Perfect Information}
-\input{MainMatter/Strategic_Game_with_PerfectInfo/Equilibrium.tex}
+\section{With Perfect Information}
 \input{MainMatter/Strategic_Game_with_PerfectInfo/Rationalizability.tex}
-\chapter{With Incomplete Information}
-
-% Part 2: Static Games with Perfect Information.
-\part{Dynamic Games with Perfect Information}
+\input{MainMatter/Strategic_Game_with_PerfectInfo/Equilibrium.tex}
+\section{With Incomplete Information}
 
 
-% Part 4: Static Games with Perfect Information.
-\part{Dynamic Games with Incomplete Information}
+\part{Extensive Game with Perfect Information}
+\input{MainMatter/Extensive_Game_with_Perfectinfo/Game.tex}
 
+\part{Extensive Game with Incomplete Information}
 
-% Appendices section.
-\appendix
+\part{Topics}
 
-% Include the "notation" appendix from the BackMatter subfolder.
-\include{./BackMatter/notation}
-
-% Include the "code" appendix from the BackMatter subfolder.
-\include{./BackMatter/code}
-
-
-% Include the "references" appendix from the BackMatter subfolder.
-\include{./BackMatter/references}
-
-% End the document.
 \end{document}

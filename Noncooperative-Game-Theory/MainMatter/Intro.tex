@@ -1,4 +1,3 @@
-\chapter{Introduction}
 In decision theory, we're modeled as acting as if we were maximizing our utility given some exogenous parameters. 
 An example is that producers in competitive markets choose the output that maximizes their profit. In this setting, no individual producer's behavior affects market structure, and expectations about other producers do not influence decision-making.
 
@@ -52,7 +51,7 @@ They won't be able to see the outcome until everyone makes their choice. Two imp
     \item It's not necessarily a one-shot game. It can be repeated, but across rounds, no strategic links are allowed. 
 \end{itemize}
 
-To make a correct decision, they should care not only about their own choice, but also make decisions under other subjects' possible action, i.e., form a belief. 
+To make a correct decision, they should care not only about their own choice, but also make decisions under other subjects' possible action, i.e., form a belief and maximize his/her payoff according to this belief. 
 To be more specific, we need to consider two things: how should one interact given opponents' action? And, what are opponents' possible actions?
 We will formalize this idea soon after we give the definition of a strategic game.
 
@@ -63,6 +62,54 @@ We will formalize this idea soon after we give the definition of a strategic gam
 \subsection{Extensive Form}
 
 \subsection{Common Example of Games}
+We first present some strategic games. The first stream includes some social dillema games:
+\begin{description}
+    \item[Battle of the sexes(BoS)] or according to \citet{Osborne1994-kg}, Bach or Stravinsky.
+    \item[The Prisoners Dillema(PD)]  No equilibrium as a strategic game, but allows coorperation and defection. It describes a scenario where two suspects are put into two cell and if they both confect..
+    \item[Hawk-Dove, or Chicken Game] Similar to PD, but only one coorperation option. 
+\end{description} 
+
+\begin{table}[htbp]
+\centering
+\caption{Social Dillemas}
+\label{tab:social}
+
+% ---------- BoS ----------
+\begin{subtable}{0.30\textwidth}
+\centering
+\caption{BoS}
+\begin{tabular}{cccc}
+                          &                        & \multicolumn{2}{c}{} \\  % 去掉了 Player 1
+                          &                        & B                         & S                         \\ \cline{3-4} 
+\multirow{2}{*}{}         & \multicolumn{1}{c|}{B} & \multicolumn{1}{c|}{2, 1} & \multicolumn{1}{c|}{0, 0} \\ \cline{3-4} 
+                          & \multicolumn{1}{c|}{S} & \multicolumn{1}{c|}{0, 0} & \multicolumn{1}{c|}{1, 2} \\ \cline{3-4} 
+\end{tabular}
+\end{subtable}
+% ---------- PD ----------
+\begin{subtable}{0.30\textwidth}
+\centering
+\caption{PD}
+\begin{tabular}{cccc}
+                          &                        & \multicolumn{2}{c}{} \\  % 去掉了 Player 1
+                          &                        & D                         & C                         \\ \cline{3-4} 
+\multirow{2}{*}{}         & \multicolumn{1}{c|}{D} & \multicolumn{1}{c|}{3, 3} & \multicolumn{1}{c|}{0, 4} \\ \cline{3-4} 
+                          & \multicolumn{1}{c|}{C} & \multicolumn{1}{c|}{0, 4} & \multicolumn{1}{c|}{1, 1} \\ \cline{3-4} 
+\end{tabular}
+\end{subtable}
+% ---------- Chicken ----------
+\begin{subtable}{0.30\textwidth}
+\centering
+\caption{Chicken}
+\begin{tabular}{cccc}
+                          &                        & \multicolumn{2}{c}{} \\  % 去掉了 Player 1
+                          &                        & D                         & H                         \\ \cline{3-4} 
+\multirow{2}{*}{}         & \multicolumn{1}{c|}{D} & \multicolumn{1}{c|}{3, 3} & \multicolumn{1}{c|}{1, 4} \\ \cline{3-4} 
+                          & \multicolumn{1}{c|}{H} & \multicolumn{1}{c|}{1, 4} & \multicolumn{1}{c|}{0, 0} \\ \cline{3-4} 
+\end{tabular}
+\end{subtable}
+
+\end{table}
+
 
 \section{Belief, Information and Knowledge}
 \subsection{State and Belief}
@@ -75,3 +122,9 @@ We will formalize this idea soon after we give the definition of a strategic gam
 \label{sec: info}
 
 \section{Decision Under Uncertainty}
+\subsection{Lottery and the Induced Preference}
+
+\subsection{von Neumann-Morgenstern Theorem}
+
+\subsection{Risk}
+
