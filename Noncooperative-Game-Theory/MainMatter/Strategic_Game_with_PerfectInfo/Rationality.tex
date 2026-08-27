@@ -1,0 +1,69 @@
+\subsection{Rationality}
+\subsubsection{Individual Rationality and Strictly Dominated Actions}
+We now begin to understand the very first reasoning pattern. As a rational player, i.e., a payoff seeker, we should only play strategies in best response because it helps you obtain the highest payoff given a specific belief. We say such strategies are rational.
+\begin{definition}[Rationality]
+    We say a strategy $\sigma_i\in \Delta(\mathcal{A}_i)$ is rational if $\exists \pi_i\in\Delta(\mathcal{A}_{-i}): \sigma_i\in BR_i(\pi_i)$. We say a player is rational if he/she plays a ration strategy.
+\end{definition}
+
+Well, will our opponents choose their strategies in the same way? It's reasonable to assume that they are rational, which means that they'll NOT choose an irrational strategy. Thus we assign positive probability only to strategies that can be supported by a certain belief. For actions can not be supported by any belief, we call them strictly dominated actions and we'll show that they'll not appear in the support of any mixed strategies.
+\begin{definition}[Strictly dominated action\footnote{In many textbooks, a strictly dominated action is defined to be strictly dominated by a mixed strategy, which is the condition in \thmref{thm: pearce}. We choose to define in this way to better fit our motivations.}]
+    We say $a_i\in \mathcal{A}_i$ is strictly dominated if $\forall \pi_i\in \Delta(\mathcal{A}_{-i}): a_i\notin BR_i(\pi_i)$.
+\end{definition}
+
+We'll see in the next theorem that a strictly dominated action will not be chosen as a pure strategy since there always exists a mixed strategy that yields a higher expected payoff..
+
+\begin{theorem}[Pearce] \label{thm: pearce}
+    $a_i$ is strictly dominated $\iff$ there exists a mixed strategy $\sigma_i \in \Delta(\mathcal{A}_i)$ such that $$\forall a_{-i} \in \mathcal{A}_{-i}:U_i(\sigma_i, a_{-i})> u_i(a_i,a_{-i}).$$
+    \,Then we say $\sigma_i$ strictly dominates $a_i$.
+\end{theorem}
+
+Let $NB_i$ be the set of all strictly dominated actions for player $i$. Then we can reduce the original game as $\mathcal{G}^1:=\langle N, \mathcal{A}^1, \{\preceq_i^1\}_{i\in N}\rangle $, where $\mathcal{A}^1=\prod_{i\in N} (\mathcal{A}_i\setminus NB_i)$ and $\preceq_i^1$ is a restrcition of $\preceq_i$ on $\mathcal{A}_i\setminus NB_i$.
+
+\subsubsection{Hierarchies of Beliefs}
+The above discusses what strategies we believe our oponents will choose and we believe they will choose rational strategies. Will they reason similarly? That is, how should we believe that the oponents believe that we believe they are rational?
+This kind of belief, referred to as belief of belief, and the extended belief of belief are key to rationalizability.
+
+We introduce the so-called hierachy of belief for player $i$ to capture the above idea:
+\begin{itemize}
+    \item first-order belief $\mu^1_i$: belief on other opponents' strategies, i.e., $\mu^1_i \in \Delta(\mathcal{A}_{-i})$;
+    \item second-order belief $\mu^2_i$: belief on how other opponents believe their opponents will react, i.e., $\mu^2_i \in \Delta(\mathcal{A}_{-i}\times \prod_{j\neq i} \Delta(\mathcal{A}_{-j}))$;
+    \item third/fourth...infinity-order belief.
+\end{itemize}
+
+We provide a formal definitin.
+\begin{definition}[Hierarchy of Beliefs]
+    Let $X_i^{(1)}$ be $\Delta(\mathcal{A}_{-i})$ and define deductively that $X_i^{(k+1)}:= \Delta(\mathcal{A}_{-i}\times \prod_{j\neq i}X_j^{(k)})$. The hierachy of beliefs for player $i$ is a tuple $(\mu_i^1,\mu_i^2,\cdots)\in \prod_{k=1}^{\infty}X_i^{(k)}$.
+    Let the set of hierachies of beliefs for player $i$ be $T_i$. We say $t_i\in T_i$ is the type of player $i$.
+\end{definition}
+\,We say that $\sigma$ is optimal for a type $t_i$ if it's optimal under the first-order belief of $t_i$.
+\begin{definition}[Optimal strategies for a type]
+    We say that $\sigma$ is optimal for a type $t_i$ if $\sigma\in BR_i(\mu_i^1)$.
+\end{definition}
+
+We can think of a general model of how players choose their strategies and form their belief. Such model is called an epistemic model which is a subjective belief of how the opponents, for every player, it specifies a belief of which strategies his/her opponents play and what their hierachies of belief are.
+\begin{definition}[Epistemic model]
+    Let $S_i$ be the set of player $i$'s strategy. An epistemic model specifies every player's type and a belief of his/her opponents' strategy, i.e., $(t_i)_{i\in N}$ and $(\beta_i)_{i\in N}$, where $$t_i\in T_i \quad \text{ and } \quad\beta_i(t_i)\in \Delta(\prod_{j\neq i} S_i\times T_i).$$ 
+\end{definition}
+
+\subsubsection{Common Belief in Rationality}
+The above simply provides a notion to express belief and belief of belief. In this subsubsection, using the epistemic model, we model the common belief in rationality.
+
+First, players believe their opponents act rationally, aka the 1-fold belief in rationality, that is 
+\begin{equation}\label{equ: 1-fold}
+    supp(\beta_i(t_i))\subset \left\{((\sigma_j,t_j))_{j\neq i}\in \right.\prod_{j\neq i} \left.S_i\times T_i: \sigma_j\text{ is optimal for }t_j, \forall j\neq i\right\}. 
+\end{equation}
+\,Denote types that satisfy \eqref{equ: 1-fold} as $\mathcal{R}^1_i$. 
+
+Further, for the second-order belief in rationality, we want to express that palyers believe their opponents are 1-fold rational. Thus, we
+consider types that are consistent with 1-fold belief in rationality. Thus, we require
+
+The idea of rationalizability is based on the reasoning that rationality is a common belief. 
+\begin{definition}[$k$-fold belief in rationality]
+    For an epistemic model, we say it has $1$-fold belief in rationality if \eqref{equ: 1-fold} holds. We say it has $k$-fold belief in rationality if
+\end{definition}
+
+We take an arbitary player's view:
+\begin{enumerate}
+    \item  first-order rationality: I am rational, so my action must be a best response to some belief. I also believe my opponents are rational, so my first-order belief $\mu_i^1$ assigns probability zero to their strictly dominated actions. This reduces the game from $\mathcal{G}$ to $\mathcal{G}^1$.
+    \item second-order rationality: I believe my opponents believe their opponents are rational i.e., they assign probability zero to their opponents' beliefs that assign positive probability to strictly dominated actions. 
+\end{enumerate}

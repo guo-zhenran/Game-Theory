@@ -1,4 +1,4 @@
-Before getting into the definitions, we make clear what our goal is in strategic games as a player. As we assume players are rational, i.e., payoff seekers, we are solving a maximum problem. 
+Before getting into the definitions, we make clear what our goal is in strategic games as a player. As we assume players are rational, i.e., payoff seekers, we are solving a maximization problem. 
 Given different game settings or solution concepts, there's slight difference in notation or technique. But, generally speaking, a player in a game should form a reasonable belief and make optimal decisions under such a belief.
 
 In general, we consider that a player $i$ with the belief $(\mathcal{A}_{-i},\pi_i)$, where $\pi_i$ is a probability measure on $\mathcal{A}_{-i}$, is trying to maximize his/her payoff by choosing a strategy $\sigma_i\in \Delta(\mathcal{A}_i)$, i.e., 
@@ -10,6 +10,3 @@ In general, we consider that a player $i$ with the belief $(\mathcal{A}_{-i},\pi
     BR_i(\pi_i) := \arg \max_{\sigma_i\in \Delta(\mathcal{A}_i)} \sum_{a_i\in \mathcal{A}_i}\sum_{a_{-i} \in \mathcal{A}_{-i}}\sigma_i (a_i) \pi_i (a_{-i})u_{i}(a_i,a_{-i}).
 \end{equation}
 As long as the belief is reasonable, a game is trivial as player can do their best by playing a strategy in the best-response correspondence. Thus, we'll first formalize the reasoning process and then turn to solve such a UMP.
-
-For the complete information case, we'll first introduce several settings where belief is determined in different ways, and under such belief, how should players react.
-In the following section, we introduce the concept of rationalizability, which concerns what belief is reasonable.
