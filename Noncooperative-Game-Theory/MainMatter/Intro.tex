@@ -112,9 +112,26 @@ We first present some strategic games. The first stream includes some social dil
 
 
 \section{Belief, Information and Knowledge}
-\subsection{State and Belief}
+Playing in a game is making decisions under uncertainty. No matter it's a game with complete information or with incomplete one, players are uncertain about his/her opponents' attitudes towards strategies. 
+In another word, players in a game should predict their opponents' strategies to the best of their knowledge, i.e., a probability distribution. Further, in games with incomplete/imperfect information, players are more or less uncertain about the payoff-relevant state.
+
+To characterize players' uncertainty on the world, we shall introduce some formal concepts. Here, we use the concept of state and type to represent the possible parallel worlds and players are trying to figure out which is the true world.
+\subsection{State, Signal and Belief Update}
+We define state as a payoff-relevant element by rewriting the definition of payoff function as $u_i:\mathcal{A}\times \Omega\to \R$, where $\Omega$ is the set of all possible state. 
+We understand state as something one can never observe directly, but one can observe some signals (partially) reveal the true state. For example, we can never observe the true value of an artwork, but we can oberve the winning auction price which partially reveals its true value.
+For a partition $P_i$ of $\Omega$, define a signal function $\tau_i:\Omega\to P_i$ such that $\forall \omega\in \Omega: \omega\in\tau_i(\omega)$. 
+The condition says that the signal is credible, meaning that the signal at least contains the true state.
+
+To characterize the idea that players have some idea about how the true world may be, we define a probability distribution over the state space, i.e., $p_i\in \Delta(\Omega)$. This is called the prior of player $i$. 
+When they observe a certain signal, say $t_i$, they'll update their belief by Bayesian rule. As the signal is credible, we should require the probability of its occurance to be positive, i.e., $\sum_{\omega\in t_i}p_i(\omega)>0$. If the credibility condition holds, they update their belief as the posterior $\pi_i: P_i\to \Delta(\Omega)$ where
+$$
+\pi_i(\omega|t_i)=\begin{cases}
+     \frac{p_i(\omega)}{\sum_{\omega\tp\in t_i}p_i(\omega\tp)} \quad&,\omega\in t_i;\\
+    0 &\text{,otherwise.}
+\end{cases}$$
 
 \subsection{From State to Information}
+
 
 \subsection{Knowledge and Common Knowledge}
 
