@@ -28,38 +28,28 @@ Now we start to consider the formal definition of games. We try to formalize the
 
 A game consists of players (along with their preferences) and rules (that maps actions to consequences). Each player $i$, denoted by $A_i$, has a set of available actions, called action set $\mathcal{A}_i$. 
 We use $a_i$ to denote a certain action, i.e., $a_i\in \mathcal{A}_i$. As for "rule", it maps the action profile $a = (a_i)_{i\in N}$ to a consequence $c$, i.e., a mapping $g$ from de Cartesian product of action sets $\mathcal{A} = \prod_{i\in N} \mathcal{A}_i$ to the consequence set $\mathcal{C}$.
-If we assume the participants are rational, they can surely compare among 2 consequences, inducing a preference $\preceq^*_i$ of player $i$ over $\mathcal{C} \times \mathcal{C}$.
+If we assume the participants are rational, they can surely compare among 2 consequences, inducing a preference $\preceq^*_i$ of player $i$ over $\mathcal{C}$.
 
 \begin{definition}[Game]
     A game is a 4-tuple $\langle N,\mathcal{A}, g, \{\preceq_i^*\}_{i\in N}  \rangle $, where $N$ is the set of player index. If $\preceq_i^*$ admit a utility representation, 
     we may also write $\langle N,\mathcal{A}, g, \{u_i\}_{i\in N}  \rangle $ instead.
 \end{definition}
 
-Notice that the consequence and the action is associated with a mapping, we can equivalently define the preference relation over $\mathcal{A}\times \mathcal{A}$. Let $a_{-i}$ denote the action of other players, i.e., $a_{-i} = (a_j)_{j\in N \setminus \{i\}}$, then
+Notice that the consequence and the action is associated with a mapping, we can equivalently define the preference relation over $\mathcal{A}$. Let $a_{-i}$ denote the action of other players, i.e., $a_{-i} = (a_j)_{j\in N \setminus \{i\}}$, then
 the preference of player $i$ can be defined as $$(a^{(1)}_i,a^{(1)}_{-i}) \preceq_i (a^{(2)}_i,a^{(2)}_{-i}) :\iff g(a^{(1)}_i,a^{(1)}_{-i}) \preceq_i^* g(a^{(2)}_i,a^{(2)}_{-i}).$$
 \,Then a game can be represented by $\langle N,\mathcal{A}, \{\preceq_i\}_{i\in N}  \rangle$.
 
 Such a game is of the simplist form since it's almost one-shot and static. We'll introduce history when it comes to the extensive form.
 
-\subsection{Strategic Form}
-A strategic game is a scenario where players make decisions independently and simultaneously. 
+\subsection{Actions and Strategies}
+The above notions are defined on the set of actions, which implicitly assumes that players will only choose one action as their strategies. However, you would never stick to rock when playing the RPS game, in which game you would prefer a randomized play so that the opponents may not guess your next move.
 
-To understand the meaning of ``independently and simultaneously'', let's consider an experimental setting, every subject, anonymously sitting behind a computer, is shown a payoff matrix and asked to choose their strategy\footnote{Note that this is the perfect information case. We'll talk about the impact of information in \ref{sec: info}.}.
-They won't be able to see the outcome until everyone makes their choice. Two important things to understand:
-\begin{itemize}
-    \item They don't necessarily to make decisions at exactly the same time.
-    \item It's not necessarily a one-shot game. It can be repeated, but across rounds, no strategic links are allowed. 
-\end{itemize}
-
-To make a correct decision, they should care not only about their own choice, but also make decisions under other subjects' possible action, i.e., form a belief and maximize his/her payoff according to this belief. 
-To be more specific, we need to consider two things: how should one interact given opponents' action? And, what are opponents' possible actions?
-We will formalize this idea soon after we give the definition of a strategic game.
-
-\begin{definition}[Strategic Game]
-    A strategic game is a 3-tuple $\langle N,\mathcal{A}, \{\preceq_i\}_{i\in N}  \rangle$. Everything is deined in the introduction part of the book. If every $\mathcal{A}_i$ is finite, we say the game is finite.
+Such a strategy is called a mixed strategy. For the actions you may play, you impose a randomization device on them, i.e., a random variable that tells you which action to choose in this round.
+\begin{definition}[Mixed strategies]
+    A mixed strategy $\sigma_i$ of player $i$ is a distribution over his/her actiion space, i.e., $\sigma_i\in\Delta(\mathcal{A}_i)$. A pure strategy is a degenerate mixed strategy that assigns probability 1 to a single action.
 \end{definition}
 
-\subsection{Extensive Form}
+Then our previous notion fails to work anymore unless we extend the definition of payoff to the set of lotteries over the action space.
 
 \subsection{Common Example of Games}
 We first present some strategic games. The first stream includes some social dillema games:
@@ -118,7 +108,7 @@ In another word, players in a game should predict their opponents' strategies to
 To characterize players' uncertainty on the world, we shall introduce some formal concepts. Here, we use the concept of state and type to represent the possible parallel worlds and players are trying to figure out which is the true world.
 \subsection{State, Signal and Belief Update}
 We define state as a payoff-relevant element by rewriting the definition of payoff function as $u_i:\mathcal{A}\times \Omega\to \R$, where $\Omega$ is the set of all possible state. 
-We understand state as something one can never observe directly, but one can observe some signals (partially) reveal the true state. For example, we can never observe the true value of an artwork, but we can oberve the winning auction price which partially reveals its true value.
+We understand state as something one can never observe directly, but one can observe some signals (partially) revealing the true state. For example, we can never observe the true value of an artwork, but we can oberve the winning auction price which partially reveals its true value.
 For a partition $P_i$ of $\Omega$, define a signal function $\tau_i:\Omega\to P_i$ such that $\forall \omega\in \Omega: \omega\in\tau_i(\omega)$. 
 The condition says that the signal is credible, meaning that the signal at least contains the true state.
 
@@ -134,6 +124,7 @@ $$
 
 
 \subsection{Knowledge and Common Knowledge}
+
 
 \subsection{Perfect and Incomplete Information}
 \label{sec: info}

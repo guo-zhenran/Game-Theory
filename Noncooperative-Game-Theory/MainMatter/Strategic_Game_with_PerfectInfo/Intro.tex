@@ -1,12 +1,12 @@
-Before getting into the definitions, we make clear what our goal is in strategic games as a player. As we assume players are rational, i.e., payoff seekers, we are solving a maximization problem. 
-Given different game settings or solution concepts, there's slight difference in notation or technique. But, generally speaking, a player in a game should form a reasonable belief and make optimal decisions under such a belief.
+A strategic game is a scenario where players make decisions independently and simultaneously. 
 
-In general, we consider that a player $i$ with the belief $(\mathcal{A}_{-i},\pi_i)$, where $\pi_i$ is a probability measure on $\mathcal{A}_{-i}$, is trying to maximize his/her payoff by choosing a strategy $\sigma_i\in \Delta(\mathcal{A}_i)$, i.e., 
-\begin{equation}\label{equ: strategic_gameUMP}
-    \max_{\sigma_i\in \Delta(\mathcal{A}_i)} \sum_{a_i\in \mathcal{A}_i}\sum_{a_{-i} \in \mathcal{A}_{-i}}\sigma_i (a_i) \pi_i (a_{-i})u_{i}(a_i,a_{-i}),
-\end{equation}
-\,and denote its solution the best response correspondence
-\begin{equation}\label{equ: strategic_gameBR}
-    BR_i(\pi_i) := \arg \max_{\sigma_i\in \Delta(\mathcal{A}_i)} \sum_{a_i\in \mathcal{A}_i}\sum_{a_{-i} \in \mathcal{A}_{-i}}\sigma_i (a_i) \pi_i (a_{-i})u_{i}(a_i,a_{-i}).
-\end{equation}
-As long as the belief is reasonable, a game is trivial as player can do their best by playing a strategy in the best-response correspondence. Thus, we'll first formalize the reasoning process and then turn to solve such a UMP.
+To understand the meaning of ``independently and simultaneously'', let's consider an experimental setting where every subject, anonymously sitting behind a computer, is shown a payoff matrix (he/she may only be able to see his/her own payoff) and asked to choose their strategy.
+They won't be able to see the outcome until everyone makes their choice. Two important things to understand:
+\begin{itemize}
+    \item They don't necessarily to make decisions at exactly the same time.
+    \item It's not necessarily a one-shot game. It can be repeated, but across rounds, no strategic links are allowed. 
+\end{itemize}
+
+To make a correct decision, they should care not only about their own choice, but also make decisions under other subjects' possible action, i.e., form a belief and maximize his/her payoff according to this belief. 
+To be more specific, we need to consider two things: how should one interact given opponents' action? And, what are opponents' possible actions?
+We will formalize this idea soon after we give the definition of a strategic game. When it's the incomplete imformation case, we also have to form a belief on the state and on others' belief on the state.

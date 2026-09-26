@@ -1,6 +1,20 @@
+In this section, we consider the strategic game with complete information. As discussed before, the game $\langle N,\mathcal{A}, \{u_i\}_{i\in N} \rangle $ is common knowledge to all player.
+
+Before getting into the solution concepts, we make clear what our goal is in strategic games as a player. As we assume players are rational, i.e., payoff seekers, we are solving a maximization problem. 
+Formally, we consider that a player $i$ with the belief $(\mathcal{A}_{-i},\pi_i)$, where $\pi_i$ is a probability measure on $\mathcal{A}_{-i}$, is trying to maximize his/her payoff by choosing a strategy $\sigma_i\in \Delta(\mathcal{A}_i)$, i.e., 
+\begin{equation}\label{equ: strategic_gameUMP}
+    \max_{\sigma_i\in \Delta(\mathcal{A}_i)} \sum_{(a_i)\in\mathcal{A}}\sigma_i (a_i) \pi_{-i} (a_{-i})u_{i}(a_i,a_{-i}),
+\end{equation}
+\,and denote its solution the best response correspondence
+\begin{equation}\label{equ: strategic_gameBR}
+    BR_i(\pi_i) := \arg \max_{\sigma_i\in \Delta(\mathcal{A}_i)} \sum_{(a_i)\in\mathcal{A}}\sigma_i (a_i) \pi_{-i} (a_{-i})u_{i}(a_i,a_{-i}).
+\end{equation}
+As long as the belief is reasonable, a game is trivial as player can do their best by playing a strategy in the best-response correspondence. Thus, we'll first formalize the reasoning process.
+
+
 \subsection{Rationality}
 \subsubsection{Individual Rationality and Strictly Dominated Actions}
-We now begin to understand the very first reasoning pattern. As a rational player, i.e., a payoff seeker, we should only play strategies in best response because it helps you obtain the highest payoff given a specific belief. We say such strategies are rational.
+We now begin to understand the very first reasoning pattern. As a rational player, i.e., a payoff seeker, we should only play strategies in best response because it helps us obtain the highest payoff given a specific belief. We say such strategies are rational.
 \begin{definition}[Rationality]
     We say a strategy $\sigma_i\in \Delta(\mathcal{A}_i)$ is rational if $\exists \pi_i\in\Delta(\mathcal{A}_{-i}): \sigma_i\in BR_i(\pi_i)$. We say a player is rational if he/she plays a ration strategy.
 \end{definition}
