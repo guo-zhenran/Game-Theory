@@ -1,0 +1,162 @@
+\section{Auction and Mechanism Design}
+\subsection{Single Object Sealed Auction with i.i.d. Private Value}
+\subsubsection{Settings}
+Suppose there are multiple buyers who bid price for an object. There are several ways to determine who should win the object, among which the most straightforward one is to give the object to the one who would like to pay the highest price.
+Such an auction is called standard.
+But, which price should the seller charge? We introduce 2 ways in this subsection.
+
+Before answering the question, we first formalize the setting. Suppose $N=\{1,2\cdots,n\}$ is the set of bidders. Player $i$'s monetary valuation on the object is denoted by $X_i$. 
+Since it's the private value case, we assume $X_i$'s are i.i.d. on an interval $[0,w]$, with a PDF $f$ which has full support. The realization $x_i$ of $X_i$ is private knowledge to player $i$ while the distribution $f$ is common knowledge.
+Thus we assume common prior here. Finally, we assume bidders has unconstrained budget so that the bidder can pay at most his/her private value to the seller for the object.
+
+Notice that, as long as we specify the rule of object allocation, the payoff is specified as $\Id{\text{obtained}}(x_i-p)$, where $p$ is the price charged. This is actaully a Bayesian game among bidders. Let $\beta_i: [0,w]\to \R_+\cup \{0\}$ be the strategy of palyer $i$ and denote $\beta=(\beta_i)_{i\in N}$. 
+
+Finally, we assume that the seller/auctioneer has unlimited ability of commitment, i.e., in the ex ente stage, he/she commits to a rule of how the object will be allocated by commiting to a game tree between auctioneer and bidders where the terminal history is assigned a probability distribution over $N\times \R^N$. 
+The distribution describes the probability of a bidder getting the object and the transfer he/she has to pay for the object. 
+\subsubsection{Second-Price Auction}
+In a second-price auction, the seller gives the object to the one who bids the highest price at the second-highest price. Then the payoff of player $i$ can be formalized as 
+$$\Pi_i = \Id{b_i>\max_{j\neq i}b_j}(x_i-p)=\begin{cases}
+    x_i-\max_{j\neq i}b_j &,\text{ if } b_i>\max_{j\neq i}b_j;\\
+    0 &,\text{ o.w.}
+\end{cases}$$
+\,If there are many bidders who bids the same lowest price, the tie is broken by giving them the object at the same probability.
+
+\begin{theorem}[Truth-telling is weakly-dominant]
+    $\beta(x)=x$ is a weakly-dominant strategy.
+\end{theorem}
+\begin{proof}
+W.L.O.G., we consider bidder $1$. Let $p:=\max_{j\neq 1}b_j$. We prove the case $p>x_1$: for an arbitrary bid $z_i\neq x_1$,
+\begin{description}
+    \item[Case 1] Suppose $z_1<x_1<p$, bidder 1 still loses the object, thus no incentive to deviate.
+    \item[Case 2] Suppose $x_1<z_1<p$, bidder 1 still loses the object, thus no incentive to deviate.
+    \item[Case 3] Suppose $x_1<z_1<p$, bidder 1 wins the object with a negative profit $x_1-p$, thus no incentive to deviate.
+\end{description}
+\,Similar argument can be applied to the case of $p\leq x_1$, thus truth telling is a weakly dominant strategy.
+\end{proof}
+
+\subsubsection{First-Price Auction}
+In first-price auction, the auctioneer charges the winner the highest bid, thus
+$$\Pi_i = \Id{b_i>\max_{j\neq i}b_j}(x_i-p)=\begin{cases}
+    x_i-b_i &,\text{ if } b_i>\max_{j\neq i}b_j;\\
+    0 &,\text{ o.w.}
+\end{cases}$$
+
+We formalize how they maximize their profit. 
+Let $Y_i^{(n-1)}$ denote the highest value of i.i.d. r.v. except the $i$th r.v., i.e., $Y_i^{(n-1)}=\max_{j\neq i}X_j$. Then it's straightforward that it follows the CDF $F^{n-1}$. Let $G$ denote the CDF.
+With this notation, we may calculate the (interim) probability that bidder $i$ wins the object, i.e., $$\Prob[\max_{j\neq i} X_j < x_i|X_i=x_i]=\Prob[Y_i^{(n-1)}< x_i|X_i=x_i]=\Prob[Y_i^{(n-1)}< x_i]=G(x_i),$$
+\,where the second equation is by the independence. Since we assume bidder $i$ is risk-neutral, we have $$\beta_i(x_i)\in\arg \max_{b_i\in [0,w]} G(x_i)(x_i-b_i).$$
+
+The solution can be derived by F.O.C., i.e., $$\begin{aligned}
+\frac{d \beta_{i}^{-1}\left(b_{i}\right)}{d b_{i}} G^{\prime}\left(\beta_{i}^{-1}\left(b_{i}\right)\right)\left(x_{i}-b_{i}\right)-G\left(\beta_{i}^{-1}\left(b_{i}\right)\right)&=0 \\
+\frac{g\left(\beta_{i}^{-1}\left(b_{i}\right)\right)\left(x_{i}-b_{i}\right)}{\beta_{i}^{\prime}\left(\beta_{i}^{-1}\left(b_{i}\right)\right)}-G\left(\beta_{i}^{-1}\left(b_{i}\right)\right)&=0.
+\end{aligned}$$
+\,Then notice that  $x_{i}=\beta_{i}^{-1}\left(b_{i}\right)$  and  $b_{i}=\beta_{i}\left(x_{i}\right)$ , we have
+$$\begin{aligned}
+&&g\left(x_{i}\right)\left(x_{i}-\beta_{i}\left(x_{i}\right)\right)-G\left(x_{i}\right) \beta_{i}^{\prime}\left(x_{i}\right)&=0 \\
+\iff&& g\left(x_{i}\right) \beta_{i}\left(x_{i}\right)+G\left(x_{i}\right) \beta_{i}^{\prime}\left(x_{i}\right)&=g\left(x_{i}\right) x_{i} \\
+\iff&&  \frac{d G\left(x_{i}\right) \beta_{i}\left(x_{i}\right)}{d x_{i}}&=g\left(x_{i}\right) x_{i}
+\end{aligned}$$
+\,Since  $\beta_{i}(0)=0$,
+\begin{equation}\label{equ:FPAstrategy}
+\begin{aligned}
+\beta_{i}\left(x_{i}\right) & =\frac{1}{G\left(x_{i}\right)} \int_{0}^{x_{i}} g(y) y d y \\
+& =\mathbb{E}\left[Y_{i}^{(n-1)} \mid Y_{i}^{(n-1)}<x_{i}\right].
+\end{aligned}
+\end{equation}
+
+This shows that every bidder should bid the above amount. However, notice that it's only sufficient condition for a BNE. Thus, we are left to show that this symmetric strategy is indeed an equilibrium.
+\begin{theorem}
+    Symmetric BNE of a first-price auction is given in \eqref{equ:FPAstrategy}.
+\end{theorem}
+\begin{proof}
+    Suppose  $b \leq \beta_{i}(w)$  is the strategy bidder $i$ plays in an equilibrium where other bidders bid according to \eqref{equ:FPAstrategy}. Let  $z=\beta_{i}^{-1}(b)$. The interim expected profit of bidder $i$ bidding $b$ is 
+$$\begin{aligned}
+\mathbb{E} \Pi_{i}(b, x_i) & =G(z)(x_i-b) \\
+& =G(z) x_i-\int_{0}^{z} g(y) y d y \\
+& =G(z)(x_i-z)+\int_{0}^{z} G(y) d y.
+\end{aligned}$$
+\,Meanwhile,
+\begin{equation}\label{equ:IRinFPA}
+    \mathbb{E} \Pi_{i}(\beta_i(x_i), x_i)=G(x_i)(x_i-\beta_i(x_i))=\int_{0}^{x_i} G(y) d y.
+\end{equation}
+\,Thus
+$$\begin{aligned}
+\mathbb{E} \Pi_{i}(\beta_i(x_i), x_i)-\mathbb{E} \Pi_{i}(b, x_i) & =G(z)(z-x_i)+\int_{z}^{x_i} G(y) d y \\
+& =[G(z)-G(\xi)](z-x_i),
+\end{aligned}$$
+\,where $\xi$ is between $x_i$ and $z$. Then $\mathbb{E} \Pi_{i}(\beta_i(x_i), x_i)\geq\mathbb{E} \Pi_{i}(b, x_i)$ since $G$ is strictly increasing, which implies $x_i=\beta_i(x_i)$.
+\end{proof}
+\subsubsection{Revenue Equivalence}
+We are to answer the question which selling mechanism the seller and bidders prefer. We shall compare the ex ante expected payment and revenue, i.e., the expectation of interim expected payment \(\mathrm{IEP}^{A}\) and the expected revenue \(R^{A}=n\mathrm{IEP}^{A}\), where \(A\) stands for the form of auction, say \(A=I\) for FPA and \(A=II\) for SPA.
+We neglect bidders' strategies here and assume that they choose the equilibrium strategy. Notice that
+\begin{description}
+    \item[First-price auction]  By definition, $$\mathrm{IEP}^{I}(x_i)=\Prob[\text{Win}]\E[\beta_i(x_i)\mid X_i=x_i]=G(x_i)\mathbb{E}\left[Y_{i}^{(n-1)} \mid Y_{i}^{(n-1)}<x_{i}\right].$$
+    \item[Second-price auction] Since bidders reveal the true type in an equilibrium, we have
+    $$\begin{aligned}
+        \mathrm{IEP}^{II}(x_i)&=\Prob[\text{Win}]\E[\text{2nd-highest bid}\mid b_i=x_i]\\
+        &=\Prob[\text{Win}]\E[\text{2nd-highest value}\mid X_i=x_i]
+        =G(x_i)\E[Y_i^{(n-1)}\mid Y_i^{(n-1)}< x_i].
+    \end{aligned}$$
+\end{description}
+
+This ($\mathrm{IEP}^{I}\equiv \mathrm{IEP}^{II}$) immediately implies that the seller and the bidder should be indifferent between SPA and FPA. Further, we can show that the ex ante expected revenue is the expectation of second-highest price:
+$$\begin{aligned}
+\mathbb{E}\left(R^{A}\right) & =n \int_{0}^{\omega} \int_{0}^{x_{i}} y g(y) f\left(x_{i}\right) d y d x_{i} \\
+& =n \int_{0}^{\omega} \int_{y}^{\omega} y g(y) f\left(x_{i}\right) d x_{i} d y \\
+& =n \int_{0}^{\omega} y g(y)(1-F(y)) d y.
+\end{aligned}$$
+\,Also, let  $X^{(i)}$  be the ith-highest one of  $X_{1}, \cdots, X_{n}$ , then
+$$\begin{aligned}
+\mathbb{P}\left(X^{(2)} \leqslant y\right) & =\mathbb{P}\left(\left\{i \in N: X_{i}>y\right\} \leqslant 1\right) \\
+& =\mathbb{P}\left(X^{(1)}>y\right)+\mathbb{P}\left(\bigwedge_{i \in N} X_{i} \leqslant y\right) \\
+& =n(1-F(y)) F^{n-1}(y)+F^{n}(y),
+\end{aligned}$$
+\,Thus
+$$\begin{aligned}
+f_{X^{(2)}}(y) & =n(n-1) f(y) F^{n-2}(y)(1-F(y))-n f(y) F^{n-1}(y)+n f(y) F^{n-1}(y) \\
+& =n(n-1) f(y)(1-F(y)) F^{n-2}(y) \\
+& =n(1-F(y))\left(F^{n-1}(y)\right)^{\prime} \\
+& =n(1-F(y)) g(y).
+\end{aligned}$$
+\,This implies
+$$\mathbb{E}\left(R^{A}\right)=\int_{0}^{w} y f_{X^{(2)}}(y) d y=\mathbb{E}\left(X^{(2)}\right).$$
+
+One may ask whether this result holds for a wider range of forms of auctions. The answer is yes for standard auctions if we put some restrictions on equilibrium.
+\begin{theorem}[Revenue equivalence principle] \label{thm:REP}
+    Under the assumption that bidders are risk-neutral and their values are i.i.d., all standard auctions such that 1) the equilibrium is increasing and symmetric and 2) bidders with zero value expect to pay 0 yield the same expected revenue for the auctioneer.
+\end{theorem}
+\subsubsection{Reserve Price and Seller's Reasoning}
+
+
+\subsection{Bayesian Mechanism Design: the Private Value Case}
+In this subsection, we generalize SPA and FPA to a selling mechanism. We still require participants (bidder in auctions) to send some messages and the mechanism designer (auctioneer in auctions) would commit to an allocation rule that assigns messages to an outcome.
+\begin{definition}[Selling mechanism]
+    Let $N=\{1,\cdots, n\}$ be the set of participants. A selling mechanism is a tuple $\langle \mathcal{M}, \pi, \mu \rangle $. It consists of the space of messages $\mathcal{M}=\prod_{i\in N}\mathcal{M}_i$ and an outcome $(\pi,\mu)$ where $\pi:\mathcal{M}\to \Delta$ is the probability of assigning the object to a certain participant and 
+    $\mu:\mathcal{M}\to \R^N$ is the expected transfer participants pay to the mechanism designer for the object.
+\end{definition}
+\subsubsection{Auction as a Mechanism and the General Settings}
+Auction is a mechanism. In a standard auction with i.i.d. private value, the message space is $[0,w]^N$. The auctioneer commit to giving the object to highest bidder(s), i.e., $$\pi(b_1,\cdots,b_n)=\left(\frac{\Id{b_i=\max_{j\in N}b_j}}{|\{i\in N:b_i=\max_{j\in N}b_j\}|}\right)_{i\in N}.$$
+\,And the expected transfer of any player is $\mu^{I}_i(b)=\pi_i b_i$ for FPA and $\mu^{II}_i(b)=\pi_i b^{(2)}$ for SPA, where $b^{(2)}$ stands for the 2nd-highest one in $b_1,\cdots, b_n$.
+
+Thus, we may provide the setting of mechanism design based on auctions discussed above. Let $N=\{1,\cdots, n\}$ be the set of participants. We assign each participant a type $\theta_i\in\Theta_i$ and denote $\Theta=\prod_{i\in N}\Theta_i$.  
+
+Notice that mechanism is a generalized auction and the properties of auction may be a good starting point for understanding mechanisms. There are several important questions: 
+\begin{itemize}
+    \item Recall SPA, participants truthfully report their value. We may ask whether we can find mechanisms that nudge people to do truth-telling and why they would like to reveal their true type.
+    \item Notice that people have incentive to join a FPA because their ex ante expected payoff is strictly higher than 0 according to \eqref{equ:IRinFPA}. So why would participants join an arbitrary mechanism? We would like to know the criteria for voluntary participation.
+    \item We've shown that mechanisms satisfying conditions in \thmref{thm:REP} provides the same revenue for the auctioneer. We would like to ask, whether there exists general criteria that can help distinguish mechanisms that yields the same revenue.
+    \item Since FPA and SPA yields the same expected revenue and paymant, then the mechanism designer and participants should be indifferent between them. But what's the difference between them? That is to say, how can we judge a mechanism?
+\end{itemize}
+
+\subsubsection{Direct Mechanism and Incentive Compatilibity}
+
+
+\subsubsection{Individual Rationality}
+
+
+\subsubsection{Optimal Mechanism}
+
+
+\subsubsection{Efficient Mechanism}
+
+

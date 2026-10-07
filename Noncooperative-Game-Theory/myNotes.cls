@@ -142,6 +142,7 @@
 \newcommand{\mat}[1]{\mathbf{#1}}      
 \newcommand{\vct}[1]{\boldsymbol{#1}}
 \newcommand{\tp}{^{\prime}}
+\newcommand{\Id}[1]{\mathbf{1}_{\{#1\}}}
 
 % ---------- biblatex（手动分段）----------
 \RequirePackage[
