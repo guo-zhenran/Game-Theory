@@ -1,4 +1,5 @@
-\section{Auction and Mechanism Design}
+\section{Auction and Introduction to Mechanism Design}
+This section is largely based on \citet{Krishna2002-sr} and \citet{Borgers2015-xo}.
 \subsection{Single Object Sealed Auction with i.i.d. Private Value}
 \subsubsection{Settings}
 Suppose there are multiple buyers who bid price for an object. There are several ways to determine who should win the object, among which the most straightforward one is to give the object to the one who would like to pay the highest price.
@@ -11,7 +12,7 @@ Thus we assume common prior here. Finally, we assume bidders has unconstrained b
 
 Notice that, as long as we specify the rule of object allocation, the payoff is specified as $\Id{\text{obtained}}(x_i-p)$, where $p$ is the price charged. This is actaully a Bayesian game among bidders. Let $\beta_i: [0,w]\to \R_+\cup \{0\}$ be the strategy of palyer $i$ and denote $\beta=(\beta_i)_{i\in N}$. 
 
-Finally, we assume that the seller/auctioneer has unlimited ability of commitment, i.e., in the ex ente stage, he/she commits to a rule of how the object will be allocated by commiting to a game tree between auctioneer and bidders where the terminal history is assigned a probability distribution over $N\times \R^N$. 
+Finally, we assume that the seller/auctioneer has unlimited ability of commitment, i.e., in the ex ante stage, he/she commits to a rule of how the object will be allocated by commiting to a game tree between auctioneer and bidders where the terminal history is assigned a probability distribution over $N\times \R^N$. 
 The distribution describes the probability of a bidder getting the object and the transfer he/she has to pay for the object. 
 \subsubsection{Second-Price Auction}
 In a second-price auction, the seller gives the object to the one who bids the highest price at the second-highest price. Then the payoff of player $i$ can be formalized as 
@@ -46,7 +47,7 @@ Let $Y_i^{(n-1)}$ denote the highest value of i.i.d. r.v. except the $i$th r.v.,
 With this notation, we may calculate the (interim) probability that bidder $i$ wins the object, i.e., $$\Prob[\max_{j\neq i} X_j < x_i|X_i=x_i]=\Prob[Y_i^{(n-1)}< x_i|X_i=x_i]=\Prob[Y_i^{(n-1)}< x_i]=G(x_i),$$
 \,where the second equation is by the independence. Since we assume bidder $i$ is risk-neutral, we have $$\beta_i(x_i)\in\arg \max_{b_i\in [0,w]} G(x_i)(x_i-b_i).$$
 
-The solution can be derived by F.O.C., i.e., $$\begin{aligned}
+The solution can be derived by F.O.C.: $$\begin{aligned}
 \frac{d \beta_{i}^{-1}\left(b_{i}\right)}{d b_{i}} G^{\prime}\left(\beta_{i}^{-1}\left(b_{i}\right)\right)\left(x_{i}-b_{i}\right)-G\left(\beta_{i}^{-1}\left(b_{i}\right)\right)&=0 \\
 \frac{g\left(\beta_{i}^{-1}\left(b_{i}\right)\right)\left(x_{i}-b_{i}\right)}{\beta_{i}^{\prime}\left(\beta_{i}^{-1}\left(b_{i}\right)\right)}-G\left(\beta_{i}^{-1}\left(b_{i}\right)\right)&=0.
 \end{aligned}$$
@@ -54,7 +55,7 @@ The solution can be derived by F.O.C., i.e., $$\begin{aligned}
 $$\begin{aligned}
 &&g\left(x_{i}\right)\left(x_{i}-\beta_{i}\left(x_{i}\right)\right)-G\left(x_{i}\right) \beta_{i}^{\prime}\left(x_{i}\right)&=0 \\
 \iff&& g\left(x_{i}\right) \beta_{i}\left(x_{i}\right)+G\left(x_{i}\right) \beta_{i}^{\prime}\left(x_{i}\right)&=g\left(x_{i}\right) x_{i} \\
-\iff&&  \frac{d G\left(x_{i}\right) \beta_{i}\left(x_{i}\right)}{d x_{i}}&=g\left(x_{i}\right) x_{i}
+\iff&&  \frac{d G\left(x_{i}\right) \beta_{i}\left(x_{i}\right)}{d x_{i}}&=g\left(x_{i}\right) x_{i}.
 \end{aligned}$$
 \,Since  $\beta_{i}(0)=0$,
 \begin{equation}\label{equ:FPAstrategy}
@@ -126,7 +127,14 @@ One may ask whether this result holds for a wider range of forms of auctions. Th
     Under the assumption that bidders are risk-neutral and their values are i.i.d., all standard auctions such that 1) the equilibrium is increasing and symmetric and 2) bidders with zero value expect to pay 0 yield the same expected revenue for the auctioneer.
 \end{theorem}
 \subsubsection{Reserve Price and Seller's Reasoning}
+The above implicitly assumes that the seller is risk-neutral so that he/she should be indifferent between SPA and FPA. However, for an auctioneer to decide which auction form to choose, there are two issues to concern:
+\begin{enumerate}
+    \item If he/she is risk-averse/risk-seeking, is there any difference between SPA and FPA?
+    \item Even though
+\end{enumerate}
 
+The above discusses how the auctioneer would allocate the object with an implicit assumption that his/her monetary valuation of the object is weakly below the ex ante expected profit.
+However, it's possible that the auctioneer values the object so much that he/she is reluctant to sell it at the expected revenue. We call the lowest price that the auctioneer would rather keep the object the reserve price. There are several ways to make sure that the auctioneer makes profits given some auction form and we formalize some easiest way in this subsubsection.
 
 \subsection{Bayesian Mechanism Design: the Private Value Case}
 In this subsection, we generalize SPA and FPA to a selling mechanism. We still require participants (bidder in auctions) to send some messages and the mechanism designer (auctioneer in auctions) would commit to an allocation rule that assigns messages to an outcome.
@@ -145,14 +153,105 @@ Notice that mechanism is a generalized auction and the properties of auction may
     \item Recall SPA, participants truthfully report their value. We may ask whether we can find mechanisms that nudge people to do truth-telling and why they would like to reveal their true type.
     \item Notice that people have incentive to join a FPA because their ex ante expected payoff is strictly higher than 0 according to \eqref{equ:IRinFPA}. So why would participants join an arbitrary mechanism? We would like to know the criteria for voluntary participation.
     \item We've shown that mechanisms satisfying conditions in \thmref{thm:REP} provides the same revenue for the auctioneer. We would like to ask, whether there exists general criteria that can help distinguish mechanisms that yields the same revenue.
-    \item Since FPA and SPA yields the same expected revenue and paymant, then the mechanism designer and participants should be indifferent between them. But what's the difference between them? That is to say, how can we judge a mechanism?
+    \item Since FPA and SPA yields the same expected revenue and paymant, then the mechanism designer and participants should be indifferent between them. But what's the difference between them? That is to say, how can we compare between some mechanisms?
 \end{itemize}
 
 \subsubsection{Direct Mechanism and Incentive Compatilibity}
+We first consider mechanisms where participants have incentive to reveal the true state. Suppose participents reveals the true state, then the mechanism designer may allocate the object according to their true type, i.e., commit to a allocation rule 
+over the type space. Such mechanism is called a direct mechanism.
+\begin{definition}[Direct mechanism]
+    A direct mechanism is a 3-tuple $\langle q,t \rangle$, where $q:\Theta\to \Delta$ is the probability of allocating the object to a certain participant and $t:\Theta\to \R^N$ is the expected transfer participants have to pay.
+\end{definition} 
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+  >=Stealth,
+  every node/.style={font=\small},
+  box/.style={
+    draw,
+    rounded corners=4pt,
+    minimum width=3.4cm,
+    minimum height=1.2cm,
+    align=center,
+    fill=blue!5,
+    thick
+  },
+  arr/.style={->, thick, shorten >=3pt, shorten <=3pt}
+]
 
+  \node[box] (msg)  at (0,4) {Message space\\ $\mathcal{M}=\prod_{i\in N}\mathcal{M}_i$};
+  \node[box] (type) at (-4,0) {Type space\\ $\Theta=\prod_{i\in N}\Theta_i$};
+  \node[box] (out)  at (4,0) {Outcome\\ $(\pi,\mu)$};
 
+  \draw[arr] (type) -- 
+    node[sloped, above, xshift=-3pt] {BNE $\beta^*$} 
+    (msg);
+
+  \draw[arr] (msg) -- 
+    node[sloped, above, xshift=3pt] {mechanism $\langle \mathcal{M}, \pi, \mu \rangle $} 
+    (out);
+
+  \draw[arr, dashed] (type) -- 
+    node[above, yshift=3pt] {direct mechanism $\langle q,t \rangle$} 
+    (out);
+
+  \node[draw, rounded corners, fill=yellow!10, inner sep=5pt] at (0,1.5) 
+    {$(q,t)=(\pi,\mu)\circ\beta$};
+\end{tikzpicture}
+\caption{Mechanism, Direct Mechanism and Revealation Principle}
+\label{MDMandRP}
+\end{figure}
+
+The following result shows that we can always focus on a direct mechanism, i.e., every mechanism has an equivalent direct mechanism in the sense that they yield the same outcome.
+\begin{theorem}[Revealation principle]
+    For an arbitrary mechanism $\langle \mathcal{M}, \pi, \mu \rangle$, there exists a direct mechanism $\langle q,t \rangle$ that yields the same outcome.
+\end{theorem}
+\begin{proof}
+    See \figref{MDMandRP}.
+\end{proof}
+
+Even though there always exists direct mechanisms, it does not necessarily mean that participants will truthfully report their type. 
+To incentivize participants to do truth-telling, designer should design a mechanism that makes truth-telling a weakly dominant strategy for every participant in the interim stage.
+We define $Q_i$ and $T_i$ as the interim expected probability of winning the object and the interim expected transfer, i.e., 
+$$\begin{aligned}
+    Q_i(\theta_i)&=\int_{\Theta_{-i}} q(\theta_i,\theta_{-i})f_{-i}(\theta_{-i})d \theta_{-i};\\
+    T_i(\theta_i)&=\int_{\Theta_{-i}}t_i(\theta_i,\theta_{-i})f_{-i}(\theta_{-i})d \theta_{-i}.
+\end{aligned}$$
+\,Then the interim expected payoff $U_i$ can be written as $\theta_i Q_i(\theta_i)-T_i(\theta_i)$. 
+
+To make $\beta_i(\theta_i)$ a weakly dominant strategy, we require
+$$\forall \theta\tp \neq \theta_i\in \Theta_i : U_i(\theta_i)\geq \theta_i Q_i(\theta\tp,\theta_{-i})-T_i(\theta\tp).$$
+\,We call this condition incentive compatilibity.
+\begin{definition}[Incentive compatilibity]
+    A direct mechanism is incentive compatible(IC hereafter) if and only if for every player $i$, we have 
+    $$\forall \theta\tp \neq \theta_i\in \Theta_i : U_i(\theta_i)\geq \theta_i Q_i(\theta\tp,\theta_{-i})-T_i(\theta\tp).$$
+\end{definition}
+
+We provide some properties of IC direct mechanisms.
+\begin{proposition}
+    Suppose $\langle q,t \rangle$ is a IC direct mechanism, then we have the followings:
+    \begin{enumerate}
+        \item $Q_i$ and $U_i$ are increasing;
+        \item $U_i$ is convex and not differentiable at at most countable points, hence $U_i\tp=Q_i$ a.w.;
+        \item Payoff equivalence: $U_i(\theta_i)=U_i(\underline{\theta})+\int_{\underline{\theta}}^{\theta_i}Q_i(x)\,dx$;
+        \item Revenue equivalence: $T_i(\theta_i)=T_i(\underline{\theta})+\int_{\underline{\theta}}^{\theta_i}x \,d Q_i(x)$    
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+    The proof is trivial. (2) is a standard result in real anaysis; for details, see \citet[results of....]{Ok2007-mh}. Then (3) is done and (4) can be obtained by substituting $U_i(\theta_i)=\theta_i Q_i(\theta_i)-T_i(\theta_i)$.
+\end{proof}
+
+We may provide a complete characterization of $IC$.
+\begin{theorem}
+    A direct mechanism $\langle q,t \rangle$ is IC if and only if the followings hold:
+    \begin{enumerate}
+        \item $Q_i$ is increasing;
+        \item $\forall \theta_i\in [\underline{\theta},\bar{\theta}]$: $$T_i(\theta_i)=T_i(\underline{\theta})+\int_{\underline{\theta}}^{\theta_i}x \,d Q_i(x).$$
+    \end{enumerate}
+\end{theorem}
 \subsubsection{Individual Rationality}
-
+How can the designer incentivize potential participants to join the mechanism? An intuitive answer is to provide them with a weakly positive expected payoff.
+But which expectation concept should we use? Take a designer's perspective, he/she tries to choose a certain population and design
 
 \subsubsection{Optimal Mechanism}
 
